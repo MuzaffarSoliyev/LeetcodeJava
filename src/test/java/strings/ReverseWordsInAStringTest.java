@@ -15,19 +15,19 @@ public class ReverseWordsInAStringTest {
   }
 
   @Test
-  public void Test1() {
+  public void test1() {
     Assert.assertEquals("blue is sky the", reverseWordsInAString.reverseWords("the sky is blue"));
     Assert.assertEquals("blue is sky the", reverseWordsInAStringOptimized.reverseWords("the sky is blue"));
   }
 
   @Test
-  public void Test2() {
+  public void test2() {
     Assert.assertEquals("world hello", reverseWordsInAString.reverseWords("  hello world  "));
     Assert.assertEquals("world hello", reverseWordsInAStringOptimized.reverseWords("  hello world  "));
   }
 
   @Test
-  public void Test3() {
+  public void test3() {
     Assert.assertEquals("example good a", reverseWordsInAString.reverseWords("a good   example"));
     Assert.assertEquals("example good a", reverseWordsInAStringOptimized.reverseWords("a good   example"));
   }
