@@ -6,22 +6,24 @@ import java.util.Map;
 public class SubstringsOfSizeThreeWithDistinctCharacters {
   public int countGoodSubstrings(String s) {
     Map<Character, Integer> letters = new HashMap<>();
-    int start = 0, end = 0, result = 0;
-    char leftChar;
+    int start = 0, end, result = 0;
+    char key;
     for (end = 0; end < s.length(); end++) {
-
-      letters.put(s.charAt(end), 1);
+      key = s.charAt(end);
+      letters.put(key, letters.getOrDefault(key, 0) + 1);
       if (end - start == 3) {
-        leftChar = s.charAt(start);
-        letters.put(leftChar, letters.get(leftChar) - 1);
-        if (letters.get(leftChar) == 0) {
-          letters.remove(leftChar);
+        key = s.charAt(start);
+        letters.put(key, letters.get(key) - 1);
+        if (letters.get(key) == 0) {
+          letters.remove(key);
         }
         start++;
       }
+
       if (letters.size() == 3) {
         result++;
       }
+
     }
     return result;
   }
