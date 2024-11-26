@@ -1,30 +1,40 @@
 package arrays;
 
 public class PalindromeLinkedList {
-    public boolean isPalindrome(ListNode head) {
-        ListNode prevHead = head;
-        ListNode curr = prevHead;
-        while (prevHead != null) {
-            prevHead = prevHead.next;
-        }
-        ListNode newHead = reverse(head);
-        while (newHead != null) {
-            if (newHead.val != prevHead.val) return false;
-            newHead = newHead.next;
-            prevHead = prevHead.next;
-        }
-        return true;
+  public boolean isPalindrome(ListNode head) {
+    ListNode midElement = findMiddleElement(head);
+    ListNode reversed = reverse(midElement);
+    ListNode curr = head;
+    while (reversed != null) {
+      if (reversed.val != curr.val){
+        return false;
+      }
+      reversed = reversed.next;
+      curr = curr.next;
     }
+    return true;
+  }
 
-    private ListNode reverse(ListNode head) {
-        ListNode prev = null;
-        ListNode curr = head;
-        while (curr != null) {
-            ListNode next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-        return prev;
+  public ListNode findMiddleElement(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
     }
+    return slow;
+  }
+
+  public ListNode reverse(ListNode head) {
+    ListNode prev = null;
+    ListNode curr = head;
+    while (curr != null) {
+      ListNode tmp = curr;
+      curr = curr.next;
+      tmp.next = prev;
+      prev = tmp;
+    }
+    return prev;
+  }
+
 }
